@@ -1,0 +1,28 @@
+{# Page layout #}
+
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="keywords" content="finance, management, app" />
+        <meta name="description"
+              content="{% block description %}Your personal finance manager{% endblock description %}" />
+
+        {% load static %}
+        <script src="{% static 'js/htmx.min.js' %}" defer></script>
+
+        {# djlint:off #}
+        <title>pennywise | {% block title %}Your personal finance manager{% endblock title %}</title>
+        {# djlint:on #}
+    </head>
+
+    <body>
+        {% block body %}
+            <main>
+                <p>Hey developer! You forget to add the content of this page 🫣</p>
+            </main>
+        {% endblock body %}
+    </body>
+</html>

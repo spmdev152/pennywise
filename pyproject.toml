@@ -4,4 +4,7 @@ version = "0.1.0"
 description = "A personal finance manager to track expenses, set budgets and keep your money in check without any scary surprises 🤡🪙"
 readme = "README.md"
 requires-python = ">=3.13.2"
-dependencies = ["django>=5.1.6"]
+dependencies = ["django>=5.1.6", "django-htmx>=1.22.0", "djlint>=1.36.4"]
+
+[tool.djlint]
+max_blank_lines = 1
