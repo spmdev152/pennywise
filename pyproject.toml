@@ -1,0 +1,7 @@
+[project]
+name = "pennywise"
+version = "0.1.0"
+description = "A personal finance manager to track expenses, set budgets and keep your money in check without any scary surprises 🤡🪙"
+readme = "README.md"
+requires-python = ">=3.13.2"
+dependencies = ["django>=5.1.6"]
