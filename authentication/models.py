@@ -8,12 +8,17 @@ APP_USER_NAME_VALIDATOR = RegexValidator(
 
 
 class AppUser(AbstractUser):
-    """App user model.
+    """
+    App user model.
 
-    Attributes:
-        email (models.EmailField): The email address of the user.
-        first_name (models.CharField): The first name of the user.
-        last_name (models.CharField): The last name of the user.
+    Attributes
+    ----------
+    email : models.EmailField
+        The email address of the user.
+    first_name : models.CharField
+        The first name of the user.
+    last_name : models.CharField)
+        The last name of the user.
     """
 
     email = models.EmailField(
@@ -33,20 +38,27 @@ class AppUser(AbstractUser):
     )
 
     def __str__(self) -> str:
-        """String representation of the model.
+        """
+        String representation of the model.
 
-        Returns:
-            str: The email address of the user.
+        Returns
+        -------
+        str
+            The email address of the user.
         """
 
         return self.email
 
     class Meta:
-        """Model metadata.
+        """
+        Model metadata.
 
-        Attributes:
-            db_table (str): The name of the database table associated with the model. Defaults to "users".
-            verbose_name_plural (str): The plural name associated with the model. Defaults to "Users".
+        Attributes
+        ----------
+        db_table : str
+            The name of the database table associated with the model. By default is "users".
+        verbose_name_plural : str
+            The plural name associated with the model. By default is "Users".
         """
 
         db_table = "users"

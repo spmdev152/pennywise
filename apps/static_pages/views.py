@@ -5,20 +5,28 @@ from django.views import View
 
 
 class HomeView(View):
-    """Home view.
+    """
+    Home view.
 
-    Methods:
-        get(request): Renders the home page.
+    Methods
+    -------
+    get(request: WSGIRequest) -> HttpResponse
+        Renders the home page.
     """
 
     def get(self, request: WSGIRequest) -> HttpResponse:
-        """Renders the home page.
+        """
+        Renders the home page.
 
-        Args:
-            request (WSGIRequest): The request object.
+        Parameters
+        ----------
+        request : WSGIRequest
+            The request object.
 
-        Returns:
-            HttpResponse: The rendered home page.
+        Returns
+        -------
+        HttpResponse
+            The rendered home page.
         """
 
         return render(request, "static_pages/home.html")
