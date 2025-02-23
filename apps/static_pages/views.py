@@ -5,8 +5,10 @@ from django.views import View
 
 
 class HomeView(View):
-    """
-    Home view.
+    """Home view.
+
+    Methods:
+        get(request): Renders the home page.
     """
 
     def get(self, request: WSGIRequest) -> HttpResponse:
