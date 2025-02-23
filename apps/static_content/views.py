@@ -29,4 +29,4 @@ class HomeView(View):
             The rendered home page.
         """
 
-        return render(request, "static_pages/home.html")
+        return render(request, "pages/static_content/home.html")
