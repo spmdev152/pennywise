@@ -1,0 +1,47 @@
+.sign-in-form {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sign-in-form__card {
+    width: 100%;
+    max-width: var(--width-lg);
+    padding: var(--space-sm);
+}
+
+.sign-in-form__card--title {
+    font-size: var(--font-size-xl);
+    margin-bottom: var(--space-md);
+}
+
+.sign-in-form__card__form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.sign-in-form__card__form__field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xxs);
+}
+
+.sign-in-form__card__form__field:last-of-type {
+    margin-bottom: var(--space-md);
+}
+
+.sign-in-form__card__form__field--label {
+    font-size: var(--font-size-xxs);
+}
+
+.sign-in-form__card__form__field--input {
+    font-size: var(--font-size-xs);
+    padding: var(--space-xs);
+}
+
+.sign-in-form__card--form-button {
+    width: 100%;
+    font-size: var(--font-size-sm);
+}

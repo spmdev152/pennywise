@@ -1,0 +1,43 @@
+:root {
+    /* Widths */
+    --width-xxs: 3rem;
+    --width-xs: 6rem;
+    --width-sm: 12rem;
+    --width-md: 18rem;
+    --width-lg: 24rem;
+    --width-xl: 30rem;
+    --width-xxl: 36rem;
+
+    /* Font sizes */
+    --font-size-xxs: 0.75rem;
+    --font-size-xs: 0.875rem;
+    --font-size-sm: 1rem;
+    --font-size-md: 1.25rem;
+    --font-size-lg: 1.5rem;
+    --font-size-xl: 2rem;
+    --font-size-xxl: 2.5rem;
+
+    /* Spaces */
+    --space-xxs: 0.25rem;
+    --space-xs: 0.5rem;
+    --space-sm: 1rem;
+    --space-md: 1.5rem;
+    --space-lg: 2rem;
+    --space-xl: 3rem;
+    --space-xxl: 4rem;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+input {
+    outline: none;
+}
+
+button {
+    border: none;
+    cursor: pointer;
+}

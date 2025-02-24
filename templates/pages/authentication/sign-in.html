@@ -1,0 +1,48 @@
+{# Sign in page #}
+
+{% extends "layouts/page.html" %}
+
+{% load static %}
+
+{# djlint:off #}
+{% block description %}Sign in page{% endblock description %}
+{% block title %}Sign in{% endblock title %}
+{# djlint:on #}
+
+{% block css %}
+    {{ block.super }}
+
+    <link rel="stylesheet"
+          href="{% static 'css/pages/authentication/sign-in.css' %}">
+{% endblock css %}
+
+{% block body %}
+    <main>
+        <section class="sign-in-form">
+            <div class="sign-in-form__card">
+                <h1 class="sign-in-form__card--title">Sign in</h1>
+
+                <form class="sign-in-form__card__form" id="sign-in-form">
+                    <div class="sign-in-form__card__form__field">
+                        <label class="sign-in-form__card__form__field--label" for="email">Email</label>
+
+                        <input class="sign-in-form__card__form__field--input"
+                               name="email"
+                               autocomplete="email" />
+                    </div>
+
+                    <div class="sign-in-form__card__form__field">
+                        <label class="sign-in-form__card__form__field--label" for="password">Password</label>
+
+                        <input class="sign-in-form__card__form__field--input"
+                               name="password"
+                               type="password"
+                               autocomplete="current-password" />
+                    </div>
+                </form>
+
+                <button class="sign-in-form__card--form-button" form="sign-in-form">Send</button>
+            </div>
+        </section>
+    </main>
+{% endblock body %}
