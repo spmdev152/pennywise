@@ -1,4 +1,11 @@
 :root {
+    /* Colors */
+    --color-dark: #22223B;
+    --color-medium-dark: #4A4E69;
+    --color-medium: #9A8C98;
+    --color-medium-light: #C9ADA7;
+    --color-light: #F2E9E4;
+
     /* Widths */
     --width-xxs: 3rem;
     --width-xs: 6rem;
@@ -25,6 +32,21 @@
     --space-lg: 2rem;
     --space-xl: 3rem;
     --space-xxl: 4rem;
+
+    /* Border Radius */
+    --radius-xxs: 0.125rem;
+    --radius-xs: 0.25rem;
+    --radius-sm: 0.5rem;
+    --radius-md: 1rem;
+    --radius-lg: 1.5rem;
+    --radius-xl: 2rem;
+    --radius-xxl: 3rem;
+
+    /* Shadows */
+    --shadow-xs: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    --shadow-sm: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    --shadow-lg: 0px 6px 12px rgba(0, 0, 0, 0.3);
+    --shadow-xl: 0px 8px 16px rgba(0, 0, 0, 0.4);
 }
 
 * {
@@ -33,11 +55,28 @@
     box-sizing: border-box;
 }
 
+body {
+    background-color: var(--color-medium-dark);
+    font-family: "Roboto", serif;
+}
+
+a {
+    color: cornflowerblue;
+}
+
 input {
+    border: none;
     outline: none;
+    border-radius: var(--radius-xs);
+}
+
+input:focus {
+    outline: 2px solid cornflowerblue;
 }
 
 button {
     border: none;
+    padding: var(--space-xs) 0;
+    border-radius: var(--radius-xs);
     cursor: pointer;
 }

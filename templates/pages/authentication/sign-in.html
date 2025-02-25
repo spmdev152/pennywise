@@ -28,6 +28,7 @@
 
                         <input class="sign-in-form__card__form__field--input"
                                name="email"
+                               placeholder="pennywise@gmail.com"
                                autocomplete="email" />
                     </div>
 
@@ -37,9 +38,14 @@
                         <input class="sign-in-form__card__form__field--input"
                                name="password"
                                type="password"
+                               placeholder="*********"
                                autocomplete="current-password" />
                     </div>
                 </form>
+
+                <p class="sign-in-form__card--sign-up">
+                    Do you not have an account? <a href="{% url 'home' %}">Sign up</a>
+                </p>
 
                 <button class="sign-in-form__card--form-button" form="sign-in-form">Send</button>
             </div>

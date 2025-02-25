@@ -7,12 +7,16 @@
 
 .sign-in-form__card {
     width: 100%;
-    max-width: var(--width-lg);
-    padding: var(--space-sm);
+    max-width: var(--width-xl);
+    background-color: var(--color-dark);
+    padding: var(--space-md);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-sm);
 }
 
 .sign-in-form__card--title {
-    font-size: var(--font-size-xl);
+    color: var(--color-light);
+    font-size: var(--font-size-xxl);
     margin-bottom: var(--space-md);
 }
 
@@ -25,7 +29,7 @@
 .sign-in-form__card__form__field {
     display: flex;
     flex-direction: column;
-    gap: var(--space-xxs);
+    gap: var(--space-xs);
 }
 
 .sign-in-form__card__form__field:last-of-type {
@@ -33,7 +37,8 @@
 }
 
 .sign-in-form__card__form__field--label {
-    font-size: var(--font-size-xxs);
+    color: var(--color-light);
+    font-size: var(--font-size-xs);
 }
 
 .sign-in-form__card__form__field--input {
@@ -41,7 +46,21 @@
     padding: var(--space-xs);
 }
 
+.sign-in-form__card--sign-up {
+    color: var(--color-light);
+    font-size: var(--font-size-xs);
+    margin-bottom: var(--space-md);
+}
+
 .sign-in-form__card--form-button {
     width: 100%;
+    color: var(--color-dark);
+    background-color: var(--color-medium-light);
     font-size: var(--font-size-sm);
+    font-weight: 500;
+    transition: filter 0.1s ease;
+}
+
+.sign-in-form__card--form-button:hover {
+    filter: brightness(0.85);
 }
