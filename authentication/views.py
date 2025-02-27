@@ -3,6 +3,8 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.views import View
 
+from authentication.forms import SignInForm
+
 
 class SignInView(View):
     """
@@ -30,3 +32,32 @@ class SignInView(View):
         """
 
         return render(request, "pages/authentication/sign-in.html")
+
+    def post(self, request: WSGIRequest) -> HttpResponse:
+        ...
+
+        form = SignInForm(request.POST)
+
+        if not form.is_valid():
+            errors_html = ""
+
+            for field in form.fields.keys():
+                field_errors = form.errors.get(field)
+
+                if field_errors:
+                    errors_html += f'<p class="field-error" id="{field}-error">{field_errors[0]}</p>'
+
+                    continue
+
+                errors_html += f'<div id="{field}-error" style="display: none;"></div>'
+
+            non_field_errors = form.non_field_errors()
+
+            if form.non_field_errors():
+                errors_html += f'<p class="form-error" id="invalid-credentials-error">{non_field_errors[0]}</p>'
+            else:
+                errors_html += (
+                    f'<div id="invalid-credentials-error" style="display: none;"></div>'
+                )
+
+            return HttpResponse(errors_html)

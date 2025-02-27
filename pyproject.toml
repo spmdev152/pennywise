@@ -8,3 +8,4 @@ dependencies = ["django>=5.1.6", "django-htmx>=1.22.0", "djlint>=1.36.4"]
 
 [tool.djlint]
 max_blank_lines = 1
+ignore = "H021"

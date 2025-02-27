@@ -22,7 +22,14 @@
             <div class="sign-in-form__card">
                 <h1 class="sign-in-form__card--title">Sign in</h1>
 
-                <form class="sign-in-form__card__form" id="sign-in-form">
+                <form class="sign-in-form__card__form"
+                      id="sign-in-form"
+                      hx-post="{% url 'sign-in' %}"
+                      hx-swap="multi:#email-error:outerHTML,#password-error:outerHTML,#invalid-credentials-error:outerHTML">
+                    {% csrf_token %}
+
+                    <div id="invalid-credentials-error" style="display: none"></div>
+
                     <div class="sign-in-form__card__form__field">
                         <label class="sign-in-form__card__form__field--label" for="email">Email</label>
 
@@ -30,6 +37,8 @@
                                name="email"
                                placeholder="pennywise@gmail.com"
                                autocomplete="email" />
+
+                        <div id="email-error" style="display: none"></div>
                     </div>
 
                     <div class="sign-in-form__card__form__field">
@@ -40,6 +49,8 @@
                                type="password"
                                placeholder="*********"
                                autocomplete="current-password" />
+
+                        <div id="password-error" style="display: none"></div>
                     </div>
                 </form>
 

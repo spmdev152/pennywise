@@ -26,11 +26,12 @@
         {% endblock css %}
 
         {% block js %}
-            <script src="{% static 'js/htmx.min.js' %}" defer></script>
+            <script src="{% static 'js/htmx/htmx.min.js' %}" defer></script>
+            <script src="{% static 'js/htmx/multi-swap.min.js' %}" defer></script>
         {% endblock js %}
     </head>
 
-    <body>
+    <body hx-ext="multi-swap">
         {% block body %}
             <main>
                 <p>Hey developer! You forget to add the content of this page 🫣</p>
