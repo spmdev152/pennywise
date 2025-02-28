@@ -25,10 +25,12 @@
                 <form class="sign-in-form__card__form"
                       id="sign-in-form"
                       hx-post="{% url 'sign-in' %}"
-                      hx-swap="multi:#email-error:outerHTML,#password-error:outerHTML,#invalid-credentials-error:outerHTML">
+                      hx-swap="multi:#email-error:outerHTML,#password-error:outerHTML,#credentials-error:outerHTML"
+                      hx-indicator="#sign-in-form-button"
+                      hx-disable-element="#sign-in-form-button">
                     {% csrf_token %}
 
-                    <div id="invalid-credentials-error" style="display: none"></div>
+                    <div id="credentials-error" style="display: none"></div>
 
                     <div class="sign-in-form__card__form__field">
                         <label class="sign-in-form__card__form__field--label" for="email">Email</label>
@@ -58,7 +60,12 @@
                     Do you not have an account? <a href="{% url 'home' %}">Sign up</a>
                 </p>
 
-                <button class="sign-in-form__card--form-button" form="sign-in-form">Send</button>
+                <button class="sign-in-form__card--form-button"
+                        id="sign-in-form-button"
+                        form="sign-in-form">
+                    Send
+                    {% include "icons/loading.html" with width="16" height="16" style="display: none;" %}
+                </button>
             </div>
         </section>
     </main>

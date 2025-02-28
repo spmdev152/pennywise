@@ -59,9 +59,4 @@
   background-color: var(--color-medium-light);
   font-size: var(--font-size-sm);
   font-weight: 500;
-  transition: filter 0.1s ease;
-}
-
-.sign-in-form__card--form-button:hover {
-  filter: brightness(0.85);
 }

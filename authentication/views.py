@@ -75,10 +75,10 @@ class SignInView(View):
             non_field_errors = form.non_field_errors()
 
             if form.non_field_errors():
-                errors_html += f'<p class="form-error" id="invalid-credentials-error">{non_field_errors[0]}</p>'
+                errors_html += f'<p class="form-error" id="credentials-error">{non_field_errors[0]}</p>'
             else:
                 errors_html += (
-                    f'<div id="invalid-credentials-error" style="display: none;"></div>'
+                    f'<div id="credentials-error" style="display: none;"></div>'
                 )
 
             return HttpResponse(errors_html)
