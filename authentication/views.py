@@ -1,7 +1,11 @@
+from django.contrib.auth import login
 from django.core.handlers.wsgi import WSGIRequest
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import redirect, render
+from django.utils.decorators import method_decorator
 from django.views import View
+from django.views.decorators.cache import never_cache
+from django_htmx.http import HttpResponseClientRedirect
 
 from authentication.forms import SignInForm
 
@@ -16,6 +20,7 @@ class SignInView(View):
         Renders the sign in page.
     """
 
+    @method_decorator(never_cache)
     def get(self, request: WSGIRequest) -> HttpResponse:
         """
         Renders the sign in page.
@@ -31,10 +36,26 @@ class SignInView(View):
             The rendered sign in page.
         """
 
+        if request.user.is_authenticated:
+            return redirect("/user/account")
+
         return render(request, "pages/authentication/sign-in.html")
 
-    def post(self, request: WSGIRequest) -> HttpResponse:
-        ...
+    def post(self, request: WSGIRequest) -> HttpResponse | HttpResponseClientRedirect:
+        """
+        Signs the user in.
+
+        Parameters
+        ----------
+        request : WSGIRequest
+            The request object.
+
+        Returns
+        -------
+        HttpResponse | HttpResponseClientRedirect
+            A response with the form errors if any,
+            otherwise a redirection to the account page.
+        """
 
         form = SignInForm(request.POST)
 
@@ -61,3 +82,7 @@ class SignInView(View):
                 )
 
             return HttpResponse(errors_html)
+
+        login(request, form.user)
+
+        return HttpResponseClientRedirect("/user/account")
