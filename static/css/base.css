@@ -76,6 +76,11 @@ input:focus {
   outline: 2px solid cornflowerblue;
 }
 
+div:has(.field-error) > input {
+  border: 2px solid var(--color-error-light);
+  outline: none;
+}
+
 button {
   display: flex;
   align-items: center;
