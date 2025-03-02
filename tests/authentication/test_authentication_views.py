@@ -40,7 +40,7 @@ def test_sign_in_view_post_method_invalid_data(http_client):
     """
     GIVEN an invalid email and password,
     WHEN a POST request is made to the sign in view,
-    THEN the response status code is 400.
+    THEN the response contains the email and password errors.
     """
 
     # Arrange
@@ -50,7 +50,8 @@ def test_sign_in_view_post_method_invalid_data(http_client):
     response = http_client.post(reverse("sign-in"), data)
 
     # Assert
-    assert response.status_code == 400
+    assert '<p class="field-error" id="email-error"' in response.content.decode()
+    assert '<p class="field-error" id="password-error"' in response.content.decode()
 
 
 @pytest.mark.django_db
@@ -58,7 +59,7 @@ def test_sign_in_view_post_method_invalid_credentials(http_client):
     """
     GIVEN a group of credentials that do not correspond to any user,
     WHEN a POST request is made to the sign in view,
-    THEN the response status code is 403.
+    THEN the response contains the credentials error.
     """
 
     # Arrange
@@ -68,7 +69,7 @@ def test_sign_in_view_post_method_invalid_credentials(http_client):
     response = http_client.post(reverse("sign-in"), data)
 
     # Assert
-    assert response.status_code == 403
+    assert '<p class="form-error" id="credentials-error"' in response.content.decode()
 
 
 @pytest.mark.django_db

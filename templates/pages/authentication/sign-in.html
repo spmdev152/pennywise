@@ -30,7 +30,7 @@
                       hx-disable-element="#sign-in-form-button">
                     {% csrf_token %}
 
-                    <div id="credentials-error" style="display: none"></div>
+                    {% include "components/error/error-recipient.html" with origin="credentials" %}
 
                     <div class="sign-in-form__card__form__field">
                         <label class="sign-in-form__card__form__field--label" for="email">Email</label>
@@ -40,7 +40,7 @@
                                placeholder="pennywise@gmail.com"
                                autocomplete="email" />
 
-                        <div id="email-error" style="display: none"></div>
+                        {% include "components/error/error-recipient.html" with origin="email" %}
                     </div>
 
                     <div class="sign-in-form__card__form__field">
@@ -52,7 +52,7 @@
                                placeholder="*********"
                                autocomplete="current-password" />
 
-                        <div id="password-error" style="display: none"></div>
+                        {% include "components/error/error-recipient.html" with origin="password" %}
                     </div>
                 </form>
 

@@ -2,6 +2,7 @@ from django.contrib.auth import login
 from django.core.handlers.wsgi import WSGIRequest
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
+from django.template.loader import render_to_string
 from django.utils.decorators import method_decorator
 from django.views import View
 from django.views.decorators.cache import never_cache
@@ -60,30 +61,40 @@ class SignInView(View):
         form = SignInForm(request.POST)
 
         if not form.is_valid():
-            errors_html = ""
-            status_code = 400
+            html_response = ""
 
             for field in form.fields.keys():
                 field_errors = form.errors.get(field)
 
                 if field_errors:
-                    errors_html += f'<p class="field-error" id="{field}-error">{field_errors[0]}</p>'
+                    html_response += render_to_string(
+                        "components/error/field-error.html",
+                        {"origin": field, "error": field_errors[0]},
+                    )
 
                     continue
 
-                errors_html += f'<div id="{field}-error" style="display: none;"></div>'
+                html_response += render_to_string(
+                    "components/error/error-recipient.html",
+                    {"origin": field},
+                )
 
             non_field_errors = form.non_field_errors()
 
             if form.non_field_errors():
-                errors_html += f'<p class="form-error" id="credentials-error">{non_field_errors[0]}</p>'
-                status_code = 403
+                html_response += render_to_string(
+                    "components/error/form-error.html",
+                    {"origin": "credentials", "error": non_field_errors[0]},
+                )
             else:
-                errors_html += (
-                    f'<div id="credentials-error" style="display: none;"></div>'
+                html_response += render_to_string(
+                    "components/error/error-recipient.html",
+                    {"origin": "credentials"},
                 )
 
-            return HttpResponse(errors_html, status=status_code)
+            html_response = html_response.replace("\n", "")
+
+            return HttpResponse(html_response)
 
         login(request, form.user)
 
