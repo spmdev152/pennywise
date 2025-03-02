@@ -1,3 +1,5 @@
+from typing import Optional
+
 from django.contrib.auth.password_validation import validate_password
 from django.forms import CharField, EmailField, Form, ValidationError
 
@@ -14,8 +16,11 @@ class SignInForm(Form):
         The email field.
     password : CharField
         The password field.
-    user : Optional[AppUser]
-        The user if the credentials are valid.
+
+    Properties
+    ----------
+    user() -> Optional[AppUser]
+        Retrieves the user associated with the email in the form.
 
     Methods
     -------
@@ -27,38 +32,39 @@ class SignInForm(Form):
 
     email = EmailField()
     password = CharField(validators=[validate_password])
-    user = None
+
+    @property
+    def user(self) -> Optional[AppUser]:
+        """
+        Retrieves the user associated with the email in the form.
+
+        Returns
+        -------
+        Optional[AppUser]
+            The user if found, otherwise None.
+        """
+
+        return AppUser.objects.filter(email=self.data["email"]).first()
 
     def clean(self) -> None:
         """
         Custom form validation.
         """
 
-        data = super().clean()
+        super().clean()
 
         if not self.errors.get("email") and not self.errors.get("password"):
-            self._validate_user_credentials(data["email"], data["password"])
+            self._validate_user_credentials()
 
-    def _validate_user_credentials(self, email: str, password: str) -> None:
+    def _validate_user_credentials(self) -> None:
         """
         Validates the user credentials.
-
-        Parameters
-        ----------
-        email : str
-            The email of the user.
-        password : str
-            The password of the user.
 
         Raises
         ------
         ValidationError
-            If the user credentials are invalid.
+            If the email or password is incorrect.
         """
 
-        user = AppUser.objects.filter(email=email).first()
-
-        if not user or not user.check_password(password):
+        if not self.user or not self.user.check_password(self.data["password"]):
             raise ValidationError("Invalid email or password")
-
-        self.user = user

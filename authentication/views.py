@@ -61,6 +61,7 @@ class SignInView(View):
 
         if not form.is_valid():
             errors_html = ""
+            status_code = 400
 
             for field in form.fields.keys():
                 field_errors = form.errors.get(field)
@@ -76,12 +77,13 @@ class SignInView(View):
 
             if form.non_field_errors():
                 errors_html += f'<p class="form-error" id="credentials-error">{non_field_errors[0]}</p>'
+                status_code = 403
             else:
                 errors_html += (
                     f'<div id="credentials-error" style="display: none;"></div>'
                 )
 
-            return HttpResponse(errors_html)
+            return HttpResponse(errors_html, status=status_code)
 
         login(request, form.user)
 
