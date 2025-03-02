@@ -1,14 +1,14 @@
 import pytest
 
 from authentication.forms import SignInForm
-from tests.conftest import USER_DATA_TEST
+from tests.constants import TEST_USER_DATA
 
 
 def test_sign_in_form_invalid_data():
     """
-    GIVEN an invalid email and password,
+    GIVEN an empty email and password,
     WHEN the sign in form is initialized,
-    THEN the field errors are returned.
+    THEN the email and password errors are returned.
     """
 
     # Arrange
@@ -40,8 +40,8 @@ def test_sign_in_form_invalid_credentials():
     assert form.non_field_errors() == ["Invalid email or password"]
 
 
-@pytest.mark.django_db
 @pytest.mark.usefixtures("create_user")
+@pytest.mark.django_db
 def test_sign_in_form_invalid_success():
     """
     GIVEN a group of credentials that correspond to an existing user,
@@ -50,7 +50,7 @@ def test_sign_in_form_invalid_success():
     """
 
     # Arrange
-    data = {"email": USER_DATA_TEST["email"], "password": USER_DATA_TEST["password"]}
+    data = {"email": TEST_USER_DATA["email"], "password": TEST_USER_DATA["password"]}
 
     # Act
     form = SignInForm(data)

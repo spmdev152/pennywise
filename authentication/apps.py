@@ -8,9 +8,10 @@ class AuthenticationConfig(AppConfig):
     Attributes
     ----------
     default_auto_field : str
-        The increment type used in the primary keys of the models of the app. By default is "django.db.models.BigAutoField".
+        The primary key type of the models of the application.
+        By default is "django.db.models.BigAutoField".
     name : str
-        The application path. By default is "authentication".
+        The path of the application.
     """
 
     default_auto_field = "django.db.models.BigAutoField"

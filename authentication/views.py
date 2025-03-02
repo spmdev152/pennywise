@@ -19,6 +19,8 @@ class SignInView(View):
     -------
     get(request: WSGIRequest) -> HttpResponse
         Renders the sign in page.
+    post(request: WSGIRequest) -> HttpResponse | HttpResponseClientRedirect
+        Signs the user in.
     """
 
     @method_decorator(never_cache)

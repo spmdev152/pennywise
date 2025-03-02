@@ -11,7 +11,8 @@ class AppUserAdmin(admin.ModelAdmin):
     Attributes
     ----------
     list_display : tuple[Literal['username'], Literal['email']]
-        The fields to display inside the admin. By default is ("username", "email").
+        The fields to display inside the admin.
+        By default is ("username", "email").
     """
 
     list_display = ("username", "email")

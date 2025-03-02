@@ -2,12 +2,7 @@ import pytest
 from django.test import Client
 
 from authentication.models import AppUser
-
-USER_DATA_TEST = {
-    "username": "test_user",
-    "email": "test_user@email.com",
-    "password": "test_pwd_1234",
-}
+from tests.constants import TEST_USER_DATA
 
 
 @pytest.fixture(name="http_client")
@@ -30,7 +25,7 @@ def create_user_fixture() -> None:
     Create user fixture.
     """
 
-    AppUser.objects.create_user(**USER_DATA_TEST)
+    AppUser.objects.create_user(**TEST_USER_DATA)
 
 
 @pytest.fixture(name="create_user_and_login")
@@ -44,6 +39,6 @@ def create_user_and_login_fixture(http_client: Client) -> None:
         The http client.
     """
 
-    user = AppUser.objects.create_user(**USER_DATA_TEST)
+    user = AppUser.objects.create_user(**TEST_USER_DATA)
 
     http_client.force_login(user)

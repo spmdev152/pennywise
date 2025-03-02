@@ -14,7 +14,7 @@ class AppUser(AbstractUser):
     Attributes
     ----------
     email : models.EmailField
-        The email address of the user.
+        The email of the user.
     first_name : models.CharField
         The first name of the user.
     last_name : models.CharField)
@@ -44,7 +44,7 @@ class AppUser(AbstractUser):
         Returns
         -------
         str
-            The email address of the user.
+            The email of the user.
         """
 
         return self.email
@@ -56,9 +56,9 @@ class AppUser(AbstractUser):
         Attributes
         ----------
         db_table : str
-            The name of the database table associated with the model. By default is "users".
+            The database table name of the model. By default is "users".
         verbose_name_plural : str
-            The plural name associated with the model. By default is "Users".
+            The plural name of the model. By default is "Users".
         """
 
         db_table = "users"

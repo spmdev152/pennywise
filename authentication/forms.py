@@ -25,7 +25,7 @@ class SignInForm(Form):
     -------
     clean() -> None
         Custom form validation.
-    _validate_user_credentials(email: str, password: str) -> None
+    _validate_user_credentials() -> None
         Validates the user credentials.
     """
 

@@ -68,8 +68,8 @@ a {
 
 input {
   border: none;
-  outline: none;
   border-radius: var(--radius-xs);
+  outline: none;
 }
 
 input:focus {
@@ -86,8 +86,8 @@ button {
   align-items: center;
   justify-content: center;
   gap: var(--space-xs);
-  border: none;
   padding: var(--space-xs) 0;
+  border: none;
   border-radius: var(--radius-xs);
   cursor: pointer;
   transition: filter 0.1s ease;
