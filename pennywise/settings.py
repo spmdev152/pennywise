@@ -24,6 +24,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django_htmx",
+    "authentication",
 ]
 
 
@@ -80,6 +81,8 @@ DATABASES = {
 # AUTHENTICATION #
 ##################
 
+AUTH_USER_MODEL = "authentication.AppUser"
+
 AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
@@ -94,6 +97,8 @@ AUTH_PASSWORD_VALIDATORS = [
         "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
+
+LOGIN_URL = "/authentication/sign-in"
 
 
 ########################

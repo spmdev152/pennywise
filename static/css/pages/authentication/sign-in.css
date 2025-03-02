@@ -1,0 +1,62 @@
+.sign-in-form {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sign-in-form__card {
+  width: 100%;
+  max-width: var(--width-xl);
+  background-color: var(--color-dark);
+  padding: var(--space-md);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
+  position: relative;
+}
+
+.sign-in-form__card--title {
+  color: var(--color-light);
+  font-size: var(--font-size-xxl);
+  margin-bottom: var(--space-md);
+}
+
+.sign-in-form__card__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.sign-in-form__card__form__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.sign-in-form__card__form__field:last-of-type {
+  margin-bottom: var(--space-md);
+}
+
+.sign-in-form__card__form__field--label {
+  color: var(--color-light);
+  font-size: var(--font-size-xs);
+}
+
+.sign-in-form__card__form__field--input {
+  font-size: var(--font-size-xs);
+  padding: var(--space-xs);
+}
+
+.sign-in-form__card--sign-up {
+  color: var(--color-light);
+  font-size: var(--font-size-xs);
+  margin-bottom: var(--space-md);
+}
+
+.sign-in-form__card--form-button {
+  width: 100%;
+  color: var(--color-dark);
+  background-color: var(--color-medium-light);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+}

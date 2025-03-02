@@ -1,5 +1,7 @@
 {# Page layout #}
 
+{% load static %}
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -10,15 +12,27 @@
         <meta name="description"
               content="{% block description %}Your personal finance manager{% endblock description %}" />
 
-        {% load static %}
-        <script src="{% static 'js/htmx.min.js' %}" defer></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+              rel="stylesheet">
 
         {# djlint:off #}
         <title>pennywise | {% block title %}Your personal finance manager{% endblock title %}</title>
         {# djlint:on #}
+
+        {% block css %}
+            <link rel="stylesheet" href="{% static 'css/base.css' %}">
+        {% endblock css %}
+
+        {% block js %}
+            <script src="{% static 'js/htmx/htmx.min.js' %}" defer></script>
+            <script src="{% static 'js/htmx/multi-swap.min.js' %}" defer></script>
+            <script src="{% static 'js/htmx/disable-element.min.js' %}" defer></script>
+        {% endblock js %}
     </head>
 
-    <body>
+    <body hx-ext="multi-swap,disable-element">
         {% block body %}
             <main>
                 <p>Hey developer! You forget to add the content of this page 🫣</p>

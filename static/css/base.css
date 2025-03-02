@@ -1,0 +1,135 @@
+:root {
+  /* Colors */
+  --color-dark: #22223b;
+  --color-medium-dark: #4a4e69;
+  --color-medium: #9a8c98;
+  --color-medium-light: #c9ada7;
+  --color-light: #f2e9e4;
+  --color-error-light: #f87171;
+  --color-error-dark: #7f1d1d;
+
+  /* Widths */
+  --width-xxs: 3rem;
+  --width-xs: 6rem;
+  --width-sm: 12rem;
+  --width-md: 18rem;
+  --width-lg: 24rem;
+  --width-xl: 30rem;
+  --width-xxl: 36rem;
+
+  /* Font sizes */
+  --font-size-xxs: 0.75rem;
+  --font-size-xs: 0.875rem;
+  --font-size-sm: 1rem;
+  --font-size-md: 1.25rem;
+  --font-size-lg: 1.5rem;
+  --font-size-xl: 2rem;
+  --font-size-xxl: 2.5rem;
+
+  /* Spaces */
+  --space-xxs: 0.25rem;
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+  --space-xxl: 4rem;
+
+  /* Border Radius */
+  --radius-xxs: 0.125rem;
+  --radius-xs: 0.25rem;
+  --radius-sm: 0.5rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.5rem;
+  --radius-xl: 2rem;
+  --radius-xxl: 3rem;
+
+  /* Shadows */
+  --shadow-xs: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-sm: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  --shadow-lg: 0px 6px 12px rgba(0, 0, 0, 0.3);
+  --shadow-xl: 0px 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--color-medium-dark);
+  font-family: "Roboto", serif;
+}
+
+a {
+  color: cornflowerblue;
+}
+
+input {
+  border: none;
+  border-radius: var(--radius-xs);
+  outline: none;
+}
+
+input:focus {
+  outline: 2px solid cornflowerblue;
+}
+
+div:has(.field-error) > input {
+  border: 2px solid var(--color-error-light);
+  outline: none;
+}
+
+button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  padding: var(--space-xs) 0;
+  border: none;
+  border-radius: var(--radius-xs);
+  cursor: pointer;
+  transition: filter 0.1s ease;
+}
+
+button:hover {
+  filter: brightness(0.85);
+}
+
+button.htmx-request {
+  opacity: 70%;
+  filter: none;
+  cursor: not-allowed;
+  transition: none;
+}
+
+button.htmx-request svg {
+  display: block !important;
+  animation: spin 1s linear infinite;
+}
+
+.field-error {
+  color: var(--color-error-light);
+  font-size: var(--font-size-xxs);
+}
+
+.form-error {
+  color: var(--color-error-dark);
+  background-color: var(--color-error-light);
+  font-size: var(--font-size-xxs);
+  padding: var(--space-xxs) var(--space-xs);
+  border-radius: var(--radius-xl);
+  position: absolute;
+  top: -2rem;
+  right: 0;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

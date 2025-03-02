@@ -3,10 +3,13 @@ import sys
 
 
 def main():
-    """Launches the server.
+    """
+    Launches the server.
 
-    Raises:
-        ImportError: In case Django is not available in the environment.
+    Raises
+    ------
+    ImportError
+        If Django is not available in the environment.
     """
 
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "pennywise.settings")

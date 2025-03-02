@@ -1,0 +1,73 @@
+{# Sign in page #}
+
+{% extends "layouts/page.html" %}
+
+{% load static %}
+
+{# djlint:off #}
+{% block description %}Sign in page{% endblock description %}
+{% block title %}Sign in{% endblock title %}
+{# djlint:on #}
+
+{% block css %}
+    {{ block.super }}
+
+    <link rel="stylesheet"
+          href="{% static 'css/pages/authentication/sign-in.css' %}">
+{% endblock css %}
+
+{% block body %}
+    <main>
+        <section class="sign-in-form">
+            <div class="sign-in-form__card">
+                <h1 class="sign-in-form__card--title">Sign in</h1>
+
+                <form class="sign-in-form__card__form"
+                      id="sign-in-form"
+                      hx-post="{% url 'sign-in' %}"
+                      hx-swap="multi:#email-error:outerHTML,#password-error:outerHTML,#credentials-error:outerHTML"
+                      hx-indicator="#sign-in-form-button"
+                      hx-disable-element="#sign-in-form-button">
+                    {% csrf_token %}
+
+                    {% include "components/error/error-recipient.html" with origin="credentials" %}
+
+                    <div class="sign-in-form__card__form__field">
+                        <label class="sign-in-form__card__form__field--label" for="email">Email</label>
+
+                        <input class="sign-in-form__card__form__field--input"
+                               name="email"
+                               placeholder="pennywise@gmail.com"
+                               autocomplete="email" />
+
+                        {% include "components/error/error-recipient.html" with origin="email" %}
+                    </div>
+
+                    <div class="sign-in-form__card__form__field">
+                        <label class="sign-in-form__card__form__field--label" for="password">Password</label>
+
+                        <input class="sign-in-form__card__form__field--input"
+                               name="password"
+                               type="password"
+                               placeholder="*********"
+                               autocomplete="current-password" />
+
+                        {% include "components/error/error-recipient.html" with origin="password" %}
+                    </div>
+                </form>
+
+                <p class="sign-in-form__card--sign-up">
+                    <!-- TODO Add link to sign up page -->
+                    Do you not have an account? <a href="{% url 'home' %}">Sign up</a>
+                </p>
+
+                <button class="sign-in-form__card--form-button"
+                        id="sign-in-form-button"
+                        form="sign-in-form">
+                    Send
+                    {% include "icons/loading.html" with width="16" height="16" style="display: none;" %}
+                </button>
+            </div>
+        </section>
+    </main>
+{% endblock body %}
