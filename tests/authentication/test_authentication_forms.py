@@ -12,14 +12,14 @@ def test_sign_in_form_invalid_data():
     """
 
     # Arrange
-    data = {"email": "not_an_email", "password": "admin1234"}
+    data = {"email": "", "password": ""}
 
     # Act
     form = SignInForm(data)
 
     # Assert
-    assert form.errors.get("email") == ["Enter a valid email address."]
-    assert form.errors.get("password") == ["This password is too common."]
+    assert form.errors.get("email") == ["This field is required."]
+    assert form.errors.get("password") == ["This field is required."]
 
 
 @pytest.mark.django_db
@@ -31,7 +31,7 @@ def test_sign_in_form_invalid_credentials():
     """
 
     # Arrange
-    data = {"email": "valid@email.com", "password": "valid_1234"}
+    data = {"email": "incorrect_email", "password": "incorrect_password"}
 
     # Act
     form = SignInForm(data)

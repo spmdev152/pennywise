@@ -44,7 +44,7 @@ def test_sign_in_view_post_method_invalid_data(http_client):
     """
 
     # Arrange
-    data = {"email": "not_an_email", "password": "admin1234"}
+    data = {"email": "", "password": ""}
 
     # Act
     response = http_client.post(reverse("sign-in"), data)

@@ -1,7 +1,6 @@
 from typing import Optional
 
-from django.contrib.auth.password_validation import validate_password
-from django.forms import CharField, EmailField, Form, ValidationError
+from django.forms import CharField, Form, ValidationError
 
 from authentication.models import AppUser
 
@@ -12,7 +11,7 @@ class SignInForm(Form):
 
     Attributes
     ----------
-    email : EmailField
+    email : CharField
         The email field.
     password : CharField
         The password field.
@@ -30,8 +29,8 @@ class SignInForm(Form):
         Validates the user credentials.
     """
 
-    email = EmailField()
-    password = CharField(validators=[validate_password])
+    email = CharField()
+    password = CharField()
 
     @property
     def user(self) -> Optional[AppUser]:
