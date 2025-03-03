@@ -1,8 +1,18 @@
 import pytest
+from django.conf import settings
 from django.test import Client
 
 from authentication.models import AppUser
 from tests.constants import TEST_USER_DATA
+
+
+def pytest_configure() -> None:
+    """
+    Pytest configuration hook.
+    """
+
+    settings.ENVIRONMENT = "environment"
+    settings.SECRET_KEY = "secret_key"
 
 
 @pytest.fixture(name="http_client")

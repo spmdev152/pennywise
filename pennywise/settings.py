@@ -1,12 +1,13 @@
+import os
 from pathlib import Path
 
 #################
 # CORE SETTINGS #
 #################
 
-DEBUG = True
+SECRET_KEY = os.getenv("SECRET_KEY")
+DEBUG = os.getenv("ENVIRONMENT") != "production"
 BASE_DIR = Path(__file__).resolve().parent.parent
-SECRET_KEY = "django-insecure-_=+%lcowvd+4jy%gpgj9-%cyzoke3_dnl0c&+_3hkwnzg+*m)h"
 WSGI_APPLICATION = "pennywise.wsgi.application"
 ROOT_URLCONF = "pennywise.urls"
 ALLOWED_HOSTS = []

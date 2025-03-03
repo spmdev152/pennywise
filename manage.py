@@ -1,6 +1,8 @@
 import os
 import sys
 
+from pennywise.utils import check_environment_variables
+
 
 def main():
     """
@@ -18,6 +20,8 @@ def main():
         from django.core.management import execute_from_command_line
     except ImportError:
         raise ImportError("Django not found")
+
+    check_environment_variables()
 
     execute_from_command_line(sys.argv)
 

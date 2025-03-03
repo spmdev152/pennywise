@@ -42,7 +42,7 @@ def test_sign_in_form_invalid_credentials():
 
 @pytest.mark.usefixtures("create_user")
 @pytest.mark.django_db
-def test_sign_in_form_invalid_success():
+def test_sign_in_form_success():
     """
     GIVEN a group of credentials that correspond to an existing user,
     WHEN the sign in form is initialized,
