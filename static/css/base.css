@@ -1,63 +1,49 @@
 :root {
   /* Colors */
-  --color-dark: #22223b;
-  --color-medium-dark: #4a4e69;
-  --color-medium: #9a8c98;
-  --color-medium-light: #c9ada7;
-  --color-light: #f2e9e4;
-  --color-error-light: #f87171;
-  --color-error-dark: #7f1d1d;
+  --color-bg: #fafafa;
+  --color-fg: #09090b;
+  --color-bg-muted: #e4e4e7;
+  --color-fg-muted: #a1a1aa;
+  --color-primary-bg: #18181b;
+  --color-primary-fg: #f5f5f5;
+  --color-error-bg: #ef4444;
+  --color-error-fg: #f0f0f0;
+  --color-layout-bg: #ffffff;
+  --color-layout-fg: #1a1a1e;
+  --color-border: #e5e5e5;
 
-  /* Widths */
-  --width-xxs: 3rem;
-  --width-xs: 6rem;
-  --width-sm: 12rem;
-  --width-md: 18rem;
-  --width-lg: 24rem;
-  --width-xl: 30rem;
-  --width-xxl: 36rem;
+  /* Sizing */
+  --size-xxs: 0.25rem;
+  --size-xs: 0.5rem;
+  --size-sm: 1rem;
+  --size-md: 1.5rem;
+  --size-lg: 2rem;
+  --size-xl: 3rem;
+  --size-2xl: 4rem;
 
-  /* Heights */
-  --height-xxs: 2rem;
-  --height-xs: 4rem;
-  --height-sm: 8rem;
-  --height-md: 14rem;
-  --height-lg: 20rem;
-  --height-xl: 26rem;
-  --height-xxl: 32rem;
+  /* Layout */
+  --width-sidebar: 18rem;
+  --height-header: 4rem;
 
-  /* Font sizes */
-  --font-size-xxs: 0.75rem;
-  --font-size-xs: 0.875rem;
-  --font-size-sm: 1rem;
-  --font-size-md: 1.25rem;
-  --font-size-lg: 1.5rem;
-  --font-size-xl: 2rem;
-  --font-size-xxl: 2.5rem;
+  /* Typography */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-md: 1.25rem;
+  --text-lg: 1.5rem;
+  --text-xl: 2rem;
+  --text-2xl: 2.5rem;
 
-  /* Spaces */
-  --space-xxs: 0.25rem;
-  --space-xs: 0.5rem;
-  --space-sm: 1rem;
-  --space-md: 1.5rem;
-  --space-lg: 2rem;
-  --space-xl: 3rem;
-  --space-xxl: 4rem;
-
-  /* Border Radius */
-  --radius-xxs: 0.125rem;
-  --radius-xs: 0.25rem;
-  --radius-sm: 0.5rem;
-  --radius-md: 1rem;
-  --radius-lg: 1.5rem;
-  --radius-xl: 2rem;
-  --radius-xxl: 3rem;
+  /* Radius */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 1rem;
+  --radius-full: 2rem;
 
   /* Shadows */
-  --shadow-xs: 0px 2px 4px rgba(0, 0, 0, 0.1);
-  --shadow-sm: 0px 4px 8px rgba(0, 0, 0, 0.2);
-  --shadow-lg: 0px 6px 12px rgba(0, 0, 0, 0.3);
-  --shadow-xl: 0px 8px 16px rgba(0, 0, 0, 0.4);
+  --shadow-sm: 0px 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0px 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 * {
@@ -67,26 +53,27 @@
 }
 
 body {
-  background-color: var(--color-medium-dark);
+  background-color: var(--color-bg);
   font-family: "Roboto", serif;
 }
 
 a {
-  color: cornflowerblue;
+  color: #2563eb;
 }
 
 input {
-  border: none;
-  border-radius: var(--radius-xs);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
   outline: none;
 }
 
 input:focus {
-  outline: 2px solid cornflowerblue;
+  border-color: transparent;
+  outline: 2px solid #2563eb;
 }
 
 div:has(.field-error) > input {
-  border: 2px solid var(--color-error-light);
+  border: 2px solid var(--color-error-bg);
   outline: none;
 }
 
@@ -94,17 +81,17 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: var(--space-xs);
+  gap: var(--size-xs);
   font-weight: 500;
-  padding: var(--space-xs);
+  padding: var(--size-xs);
   border: none;
-  border-radius: var(--radius-xs);
+  border-radius: var(--radius-sm);
   cursor: pointer;
   transition: filter 0.1s ease;
 }
 
 button:hover {
-  filter: brightness(0.85);
+  filter: brightness(0.95);
 }
 
 button.htmx-request {
@@ -120,16 +107,16 @@ button.htmx-request svg {
 }
 
 .field-error {
-  color: var(--color-error-light);
-  font-size: var(--font-size-xxs);
+  color: var(--color-error-bg);
+  font-size: var(--text-xs);
 }
 
 .form-error {
-  color: var(--color-error-dark);
-  background-color: var(--color-error-light);
-  font-size: var(--font-size-xxs);
-  padding: var(--space-xxs) var(--space-xs);
-  border-radius: var(--radius-xl);
+  color: var(--color-error-fg);
+  background-color: var(--color-error-bg);
+  font-size: var(--text-xs);
+  padding: var(--size-xxs) var(--size-xs);
+  border-radius: var(--radius-full);
   position: absolute;
   top: -2rem;
   right: 0;

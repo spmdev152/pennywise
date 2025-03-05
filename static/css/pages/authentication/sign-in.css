@@ -7,55 +7,57 @@
 
 .sign-in-form__card {
   width: 100%;
-  max-width: var(--width-xl);
-  background-color: var(--color-dark);
-  padding: var(--space-md);
-  border-radius: var(--radius-sm);
+  max-width: 30rem;
+  background-color: var(--color-layout-bg);
+  padding: var(--size-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
   box-shadow: var(--shadow-sm);
   position: relative;
 }
 
 .sign-in-form__card--title {
-  color: var(--color-light);
-  font-size: var(--font-size-xxl);
-  margin-bottom: var(--space-md);
+  color: var(--color-layout-fg);
+  font-size: var(--text-2xl);
+  margin-bottom: var(--size-md);
 }
 
 .sign-in-form__card__form {
   display: flex;
   flex-direction: column;
-  gap: var(--space-sm);
+  gap: var(--size-sm);
 }
 
 .sign-in-form__card__form__field {
   display: flex;
   flex-direction: column;
-  gap: var(--space-xs);
+  gap: var(--size-xs);
 }
 
 .sign-in-form__card__form__field:last-of-type {
-  margin-bottom: var(--space-md);
+  margin-bottom: var(--size-md);
 }
 
 .sign-in-form__card__form__field--label {
-  color: var(--color-light);
-  font-size: var(--font-size-xs);
+  color: var(--color-layout-fg);
+  font-size: var(--text-sm);
 }
 
 .sign-in-form__card__form__field--input {
-  font-size: var(--font-size-xs);
-  padding: var(--space-xs);
+  background-color: var(--color-bg);
+  font-size: var(--text-sm);
+  padding: var(--size-xs);
 }
 
 .sign-in-form__card--sign-up {
-  color: var(--color-light);
-  font-size: var(--font-size-xs);
-  margin-bottom: var(--space-md);
+  color: var(--color-fg-muted);
+  font-size: var(--text-sm);
+  margin-bottom: var(--size-md);
 }
 
 .sign-in-form__card--form-button {
   width: 100%;
-  color: var(--color-dark);
-  background-color: var(--color-medium-light);
-  font-size: var(--font-size-sm);
+  color: var(--color-primary-fg);
+  background-color: var(--color-primary-bg);
+  font-size: var(--text-base);
 }
