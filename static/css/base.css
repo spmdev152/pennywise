@@ -17,6 +17,15 @@
   --width-xl: 30rem;
   --width-xxl: 36rem;
 
+  /* Heights */
+  --height-xxs: 2rem;
+  --height-xs: 4rem;
+  --height-sm: 8rem;
+  --height-md: 14rem;
+  --height-lg: 20rem;
+  --height-xl: 26rem;
+  --height-xxl: 32rem;
+
   /* Font sizes */
   --font-size-xxs: 0.75rem;
   --font-size-xs: 0.875rem;
@@ -86,7 +95,8 @@ button {
   align-items: center;
   justify-content: center;
   gap: var(--space-xs);
-  padding: var(--space-xs) 0;
+  font-weight: 500;
+  padding: var(--space-xs);
   border: none;
   border-radius: var(--radius-xs);
   cursor: pointer;

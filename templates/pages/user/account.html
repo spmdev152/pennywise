@@ -1,0 +1,20 @@
+{# Account page #}
+
+{% extends "layouts/protected-page.html" %}
+
+{% load static %}
+
+{# djlint:off #}
+{% block description %}Account page{% endblock description %}
+{% block title %}Account{% endblock title %}
+{# djlint:on #}
+
+{% block css %}
+    {{ block.super }}
+{% endblock css %}
+
+{% block content %}
+    <section>
+        <p>Account</p>
+    </section>
+{% endblock content %}

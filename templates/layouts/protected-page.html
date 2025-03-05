@@ -1,0 +1,65 @@
+{# Protected page layout #}
+
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="keywords" content="finance, management, app" />
+        <meta name="description"
+              content="{% block description %}Your personal finance manager{% endblock description %}" />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+              rel="stylesheet">
+
+        {# djlint:off #}
+        <title>pennywise | {% block title %}Your personal finance manager{% endblock title %}</title>
+        {# djlint:on #}
+
+        {% block css %}
+            <link rel="stylesheet" href="{% static 'css/base.css' %}">
+            <link rel="stylesheet" href="{% static 'css/layouts/protected-page.css' %}">
+        {% endblock css %}
+
+        {% block js %}
+            <script src="{% static 'js/alpine/alpine.min.js' %}" defer></script>
+            <script src="{% static 'js/htmx/htmx.min.js' %}" defer></script>
+            <script src="{% static 'js/htmx/multi-swap.min.js' %}" defer></script>
+            <script src="{% static 'js/htmx/disable-element.min.js' %}" defer></script>
+        {% endblock js %}
+    </head>
+
+    <body hx-ext="multi-swap,disable-element">
+        <div class="protected-page-container" x-data="{ sidebarOpen: true }">
+            <div class="protected-page-container__sidebar"
+                 :class="sidebarOpen ? '' : 'sidebar-closed'"></div>
+
+            <div class="protected-page-container__content">
+                <header class="protected-page-container__content__header">
+                    <div class="protected-page-container__content__header__brand">
+                        <div class="protected-page-container__content__header__brand--sidebar-burger"
+                             x-on:click="sidebarOpen = ! sidebarOpen">
+                            {% include "icons/burger.html" with width="25" height="25" style="cursor: pointer;" %}
+                        </div>
+
+                        <h1 class="protected-page-container__content__header__brand--logo">Pennywise</h1>
+                    </div>
+
+                    <div class="protected-page-container__content__header__auth">
+                        <button class="protected-page-container__content__header__auth--logout">Sign out</button>
+                    </div>
+                </header>
+
+                <div class="protected-page-container__content__sections">
+                    {% block content %}
+                    {% endblock content %}
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
