@@ -22,7 +22,8 @@
   --size-2xl: 4rem;
 
   /* Layout */
-  --width-sidebar: 18rem;
+  --width-sidebar: 14rem;
+  --width-sidebar-mobile: 10rem;
   --height-header: 4rem;
 
   /* Typography */
