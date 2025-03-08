@@ -1,8 +1,9 @@
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
 from django.core.handlers.wsgi import WSGIRequest
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.template.loader import render_to_string
+from django.urls import reverse
 from django.utils.decorators import method_decorator
 from django.views import View
 from django.views.decorators.cache import never_cache
@@ -40,7 +41,7 @@ class SignInView(View):
         """
 
         if request.user.is_authenticated:
-            return redirect("/user/account")
+            return redirect(reverse("account"))
 
         return render(request, "pages/authentication/sign-in.html")
 
@@ -100,4 +101,34 @@ class SignInView(View):
 
         login(request, form.user)
 
-        return HttpResponseClientRedirect("/user/account")
+        return HttpResponseClientRedirect(reverse("account"))
+
+
+class SignOutView(View):
+    """
+    Sign out view.
+
+    Methods
+    -------
+    post(request: WSGIRequest) -> HttpResponse
+        Signs the user out.
+    """
+
+    def post(self, request: WSGIRequest) -> HttpResponse:
+        """
+        Signs the user out.
+
+        Parameters
+        ----------
+        request : WSGIRequest
+            The request object.
+
+        Returns
+        -------
+        HttpResponse
+            A redirection to the sign in page.
+        """
+
+        logout(request)
+
+        return HttpResponseClientRedirect(reverse("sign-in"))

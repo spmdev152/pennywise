@@ -59,7 +59,18 @@
                     </div>
 
                     <div class="protected-page-container__content__header__auth">
-                        <button class="protected-page-container__content__header__auth--logout">Sign out</button>
+                        <form hx-post="{% url 'sign-out' %}"
+                              hx-indicator="#sign-out-button"
+                              hx-disable-element="#sign-out-button">
+                            {% csrf_token %}
+
+                            <button class="protected-page-container__content__header__auth--logout"
+                                    id="sign-out-button">
+                                Sign out
+
+                                {% include "icons/loading.html" with width="16" height="16" style="display: none;" %}
+                            </button>
+                        </form>
                     </div>
                 </header>
 

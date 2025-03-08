@@ -58,6 +58,7 @@
 }
 
 .protected-page-container__content__header__auth--logout {
+  width: var(--size-3xl);
   color: white;
   background-color: var(--color-error-bg);
   font-size: var(--text-sm);
