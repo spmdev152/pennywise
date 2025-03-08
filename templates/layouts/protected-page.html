@@ -31,19 +31,27 @@
             <script src="{% static 'js/htmx/htmx.min.js' %}" defer></script>
             <script src="{% static 'js/htmx/multi-swap.min.js' %}" defer></script>
             <script src="{% static 'js/htmx/disable-element.min.js' %}" defer></script>
+            <script src="{% static 'js/layout/protected-page.js' %}" defer></script>
         {% endblock js %}
     </head>
 
     <body hx-ext="multi-swap,disable-element">
         <div class="protected-page-container" x-data="{ sidebarOpen: true }">
             <div class="protected-page-container__sidebar"
-                 :class="sidebarOpen ? '' : 'sidebar-closed'"></div>
+                 id="sidebar"
+                 :class="sidebarOpen ? '' : 'sidebar-closed'">
+                <div class="protected-page-container__sidebar__links">
+                    <a href="{% url 'account' %}"
+                       {% if request.path == '/user/account' %}style="font-weight: 600;"{% endif %}>Account</a>
+                    <a>Expenses</a>
+                </div>
+            </div>
 
             <div class="protected-page-container__content">
                 <header class="protected-page-container__content__header">
                     <div class="protected-page-container__content__header__brand">
                         <div class="protected-page-container__content__header__brand--sidebar-burger"
-                             x-on:click="sidebarOpen = ! sidebarOpen">
+                             x-on:click="() => { applySidebarTransition(); sidebarOpen = !sidebarOpen; }">
                             {% include "icons/burger.html" with width="25" height="25" style="cursor: pointer;" %}
                         </div>
 
