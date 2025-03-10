@@ -36,14 +36,21 @@
     </head>
 
     <body hx-ext="multi-swap,disable-element">
-        <div class="protected-page-container" x-data="{ sidebarOpen: true }">
+        <div class="protected-page-container"
+             x-data="{ sidebarOpen: window.innerWidth >= 640 }"
+             x-cloak>
             <div class="protected-page-container__sidebar"
                  id="sidebar"
                  :class="sidebarOpen ? '' : 'sidebar-closed'">
                 <div class="protected-page-container__sidebar__links">
-                    <a href="{% url 'account' %}"
+                    <a class="protected-page-container__sidebar__links--link"
+                       href="{% url 'account' %}"
                        {% if request.path == '/user/account' %}style="font-weight: 600;"{% endif %}>Account</a>
-                    <a>Expenses</a>
+                    <a class="protected-page-container__sidebar__links--link">Expenses</a>
+                </div>
+
+                <div class="protected-page-container__sidebar__account">
+                    <p class="protected-page-container__sidebar__account--name">{{ user.first_name|default:user.username }}</p>
                 </div>
             </div>
 
