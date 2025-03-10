@@ -1,0 +1,15 @@
+.toast {
+  color: var(--color-primary-fg);
+  background-color: var(--color-primary-bg);
+  font-size: var(--text-sm);
+  padding: var(--size-xs) var(--size-sm);
+  border-radius: var(--radius-md);
+  position: absolute;
+  bottom: 2%;
+  right: 2%;
+}
+
+.toast[data-type="error"] {
+  color: var(--color-error-fg);
+  background-color: var(--color-error-bg);
+}

@@ -1,0 +1,10 @@
+{# Toast component #}
+
+<div class="toast"
+     data-type="{{ type }}"
+     x-data="{ visible: false }"
+     x-init="$nextTick(() => { visible = true; setTimeout(() => visible = false, 3000) })"
+     x-show="visible"
+     x-transition.duration.250ms>
+    <p>{{ message }}</p>
+</div>

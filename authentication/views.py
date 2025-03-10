@@ -9,6 +9,7 @@ from django.views import View
 from django.views.decorators.cache import never_cache
 from django_htmx.http import HttpResponseClientRedirect
 
+from authentication.constants import REDIRECTION_MESSAGES
 from authentication.forms import SignInForm
 
 
@@ -42,6 +43,15 @@ class SignInView(View):
 
         if request.user.is_authenticated:
             return redirect(reverse("account"))
+
+        redirection_message = REDIRECTION_MESSAGES.get(request.GET.get("next"))
+
+        if redirection_message:
+            return render(
+                request,
+                "pages/authentication/sign-in.html",
+                {"redirection_message": redirection_message},
+            )
 
         return render(request, "pages/authentication/sign-in.html")
 

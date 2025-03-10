@@ -14,10 +14,15 @@
 
     <link rel="stylesheet"
           href="{% static 'css/pages/authentication/sign-in.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/toast.css' %}">
 {% endblock css %}
 
 {% block body %}
     <main>
+        {% if redirection_message %}
+            {% include "components/toast.html" with type="error" message=redirection_message %}
+        {% endif %}
+
         <section class="sign-in-form">
             <div class="sign-in-form__card">
                 <h1 class="sign-in-form__card--title">Sign in</h1>
