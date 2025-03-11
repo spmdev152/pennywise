@@ -10,7 +10,8 @@ def test_sign_in_view_get_method_authenticated_user(http_client):
     """
     GIVEN an authenticated user,
     WHEN a GET request is made to the sign in view,
-    THEN the response status code is 302.
+    THEN the response status code is 302,
+    AND the response url is /user/account.
     """
 
     # Act
@@ -18,8 +19,7 @@ def test_sign_in_view_get_method_authenticated_user(http_client):
 
     # Assert
     assert response.status_code == 302
-
-    # TODO assert the rendered template is the expected one
+    assert response.url == reverse("account")
 
 
 def test_sign_in_view_get_method_success(http_client):
@@ -36,6 +36,21 @@ def test_sign_in_view_get_method_success(http_client):
     # Assert
     assert response.status_code == 200
     assert "pages/authentication/sign-in.html" in rendered_templates
+
+
+def test_sign_in_view_get_method_next_parameter(http_client):
+    """
+    WHEN a GET request is made to the sign in view with a next parameter,
+    THEN the response status code is 200,
+    AND the redirection_value is in the response context.
+    """
+
+    # Act
+    response = http_client.get(f"{reverse('sign-in')}?next={reverse('account')}")
+
+    # Assert
+    assert response.status_code == 200
+    assert "redirection_message" in response.context
 
 
 def test_sign_in_view_post_method_invalid_data(http_client):
@@ -90,6 +105,22 @@ def test_sign_in_view_post_method_success(http_client):
     response = http_client.post(reverse("sign-in"), data)
 
     # Assert
-    assert response.url == "/user/account"
+    assert response.url == reverse("account")
 
-    # TODO remove the existing and assert the rendered template is the expected one
+
+@pytest.mark.django_db
+@pytest.mark.usefixtures("create_user_and_login")
+def test_sign_out_view_post_method_success(http_client):
+    """
+    GIVEN an authenticated user,
+    WHEN a POST request is made to the sign out view,
+    THEN the response status code is 200,
+    AND the response url is /user/sign-in.
+    """
+
+    # Act
+    response = http_client.post(reverse("sign-out"))
+
+    # Assert
+    assert response.status_code == 200
+    assert response.url == reverse("sign-in")
