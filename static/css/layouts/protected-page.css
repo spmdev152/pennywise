@@ -1,0 +1,95 @@
+.protected-page-container {
+  display: flex;
+}
+
+.protected-page-container__sidebar {
+  width: var(--width-sidebar);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-shrink: 0;
+  background-color: var(--color-layout-bg);
+  border-right: 1px solid var(--color-border);
+}
+
+.protected-page-container__sidebar__links {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-sm);
+  padding: var(--size-lg);
+}
+
+.protected-page-container__sidebar__links--link {
+  color: var(--color-layout-fg);
+  text-decoration: none;
+}
+
+.protected-page-container__sidebar__account {
+  padding: var(--size-lg);
+}
+
+.protected-page-container__sidebar__account--name {
+  color: var(--color-layout-fg);
+  font-size: var(--text-base);
+}
+
+.protected-page-container__content {
+  width: 100%;
+}
+
+.protected-page-container__content__header {
+  height: var(--height-header);
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--color-layout-bg);
+  padding: 0 var(--size-sm);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.protected-page-container__content__header__brand {
+  display: flex;
+  align-items: center;
+  gap: var(--size-sm);
+  color: var(--color-layout-fg);
+}
+
+.protected-page-container__content__header__brand--sidebar-burger {
+  display: flex;
+  align-items: center;
+}
+
+.protected-page-container__content__header__brand--logo {
+  font-size: var(--text-md);
+}
+
+.protected-page-container__content__header__auth {
+  display: flex;
+  align-items: center;
+  gap: var(--size-sm);
+}
+
+.protected-page-container__content__header__auth--logout {
+  width: var(--size-3xl);
+  color: white;
+  background-color: var(--color-error-bg);
+  font-size: var(--text-sm);
+}
+
+.protected-page-container__content__sections {
+  height: calc(100vh - var(--height-header));
+  background-color: var(--color-bg);
+  padding: var(--size-sm);
+  overflow-y: auto;
+}
+
+.sidebar-closed {
+  width: 0 !important;
+  border-right: none;
+}
+
+@media (max-width: 640px) {
+  .protected-page-container__sidebar {
+    width: var(--width-sidebar-mobile);
+  }
+}
