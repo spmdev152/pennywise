@@ -114,6 +114,38 @@ class SignInView(View):
         return HttpResponseClientRedirect(reverse("account"))
 
 
+class SignUpView(View):
+    """
+    Sign up view.
+
+    Methods
+    -------
+    get(request: WSGIRequest) -> HttpResponse
+        Renders the sign up page.
+    """
+
+    @method_decorator(never_cache)
+    def get(self, request: WSGIRequest) -> HttpResponse:
+        """
+        Renders the sign up page.
+
+        Parameters
+        ----------
+        request : WSGIRequest
+            The request object.
+
+        Returns
+        -------
+        HttpResponse
+            The rendered sign up page.
+        """
+
+        if request.user.is_authenticated:
+            return redirect(reverse("account"))
+
+        return render(request, "pages/authentication/sign-up.html")
+
+
 class SignOutView(View):
     """
     Sign out view.

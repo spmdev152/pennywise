@@ -1,0 +1,63 @@
+.sign-up-form {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sign-up-form__card {
+  width: 100%;
+  max-width: 30rem;
+  background-color: var(--color-layout-bg);
+  padding: var(--size-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  position: relative;
+}
+
+.sign-up-form__card--title {
+  color: var(--color-layout-fg);
+  font-size: var(--text-2xl);
+  margin-bottom: var(--size-md);
+}
+
+.sign-up-form__card__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-sm);
+}
+
+.sign-up-form__card__form__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-xs);
+}
+
+.sign-up-form__card__form__field:last-of-type {
+  margin-bottom: var(--size-md);
+}
+
+.sign-up-form__card__form__field--label {
+  color: var(--color-layout-fg);
+  font-size: var(--text-sm);
+}
+
+.sign-up-form__card__form__field--input {
+  background-color: var(--color-bg);
+  font-size: var(--text-sm);
+  padding: var(--size-xs);
+}
+
+.sign-up-form__card--sign-in {
+  color: var(--color-fg-muted);
+  font-size: var(--text-sm);
+  margin-bottom: var(--size-md);
+}
+
+.sign-up-form__card--form-button {
+  width: 100%;
+  color: var(--color-primary-fg);
+  background-color: var(--color-primary-bg);
+  font-size: var(--text-base);
+}
