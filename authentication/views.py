@@ -1,4 +1,5 @@
 from django.contrib.auth import login, logout
+from django.contrib.auth.hashers import make_password
 from django.core.handlers.wsgi import WSGIRequest
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
@@ -10,7 +11,7 @@ from django.views.decorators.cache import never_cache
 from django_htmx.http import HttpResponseClientRedirect
 
 from authentication.constants import REDIRECTION_MESSAGES
-from authentication.forms import SignInForm
+from authentication.forms import SignInForm, SignUpForm
 
 
 class SignInView(View):
@@ -122,6 +123,8 @@ class SignUpView(View):
     -------
     get(request: WSGIRequest) -> HttpResponse
         Renders the sign up page.
+    post(request: WSGIRequest) -> HttpResponse | HttpResponseClientRedirect
+        Signs the user up.
     """
 
     @method_decorator(never_cache)
@@ -144,6 +147,56 @@ class SignUpView(View):
             return redirect(reverse("account"))
 
         return render(request, "pages/authentication/sign-up.html")
+
+    def post(self, request: WSGIRequest) -> HttpResponse | HttpResponseClientRedirect:
+        """
+        Signs the user up.
+
+        Parameters
+        ----------
+        request : WSGIRequest
+            The request object.
+
+        Returns
+        -------
+        HttpResponse | HttpResponseClientRedirect
+            A response with the form errors if any,
+            otherwise a redirection to the account page.
+        """
+
+        form = SignUpForm(request.POST)
+
+        if not form.is_valid():
+            html_response = ""
+
+            for field in form.fields.keys():
+                field_errors = form.errors.get(field)
+
+                if field_errors:
+                    html_response += render_to_string(
+                        "components/error/field-error.html",
+                        {"origin": field, "error": field_errors[0]},
+                    )
+
+                    continue
+
+                html_response += render_to_string(
+                    "components/error/error-recipient.html",
+                    {"origin": field},
+                )
+
+            html_response = html_response.replace("\n", "")
+
+            return HttpResponse(html_response)
+
+        user = form.save(commit=False)
+
+        user.password = make_password(form.cleaned_data["password"])
+        user.save()
+
+        login(request, user)
+
+        return HttpResponseClientRedirect(reverse("account"))
 
 
 class SignOutView(View):

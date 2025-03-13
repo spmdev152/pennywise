@@ -25,12 +25,10 @@
                 <form class="sign-up-form__card__form"
                       id="sign-up-form"
                       hx-post="{% url 'sign-up' %}"
-                      hx-swap="multi:#email-error:outerHTML,#password-error:outerHTML,#account-error:outerHTML"
+                      hx-swap="multi:#first_name-error:outerHTML,#username-error:outerHTML,#email-error:outerHTML,#password-error:outerHTML"
                       hx-indicator="#sign-up-form-button"
                       hx-disable-element="#sign-up-form-button">
                     {% csrf_token %}
-
-                    {% include "components/error/error-recipient.html" with origin="account" %}
 
                     <div class="sign-up-form__card__form__field">
                         <label class="sign-up-form__card__form__field--label" for="first_name">First name</label>
@@ -40,7 +38,7 @@
                                placeholder="Pennywise"
                                autocomplete="given-name" />
 
-                        {% include "components/error/error-recipient.html" with origin="username" %}
+                        {% include "components/error/error-recipient.html" with origin="first_name" %}
                     </div>
 
                     <div class="sign-up-form__card__form__field">
