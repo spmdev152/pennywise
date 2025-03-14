@@ -1,6 +1,6 @@
 from typing import Optional
 
-from django.forms import CharField, Form, ValidationError
+from django.forms import CharField, Form, ModelForm, ValidationError
 
 from authentication.models import AppUser
 
@@ -67,3 +67,24 @@ class SignInForm(Form):
 
         if not self.user or not self.user.check_password(self.data["password"]):
             raise ValidationError("Invalid email or password")
+
+
+class SignUpForm(ModelForm):
+    """
+    Sign up form.
+    """
+
+    class Meta:
+        """
+        Form metadata.
+
+        Attributes
+        ----------
+        model : AppUser
+            The model associated with the form.
+        fields : list[Literal["first_name"], Literal["username"], Literal["email"], Literal["password"]]
+            The fields to include in the form.
+        """
+
+        model = AppUser
+        fields = ["first_name", "username", "email", "password"]

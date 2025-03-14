@@ -24,6 +24,7 @@ def test_sign_in_view_get_method_authenticated_user(http_client):
 
 def test_sign_in_view_get_method_success(http_client):
     """
+    GIVEN an unauthenticated user,
     WHEN a GET request is made to the sign in view,
     THEN the response status code is 200,
     AND the sign in template is rendered.
@@ -55,9 +56,9 @@ def test_sign_in_view_get_method_next_parameter(http_client):
 
 def test_sign_in_view_post_method_invalid_data(http_client):
     """
-    GIVEN an empty email and password,
+    GIVEN a group of invalid values for the sign in process,
     WHEN a POST request is made to the sign in view,
-    THEN the response contains the email and password errors.
+    THEN the response contains the errors.
     """
 
     # Arrange
@@ -124,3 +125,86 @@ def test_sign_out_view_post_method_success(http_client):
     # Assert
     assert response.status_code == 200
     assert response.url == reverse("sign-in")
+
+
+@pytest.mark.django_db
+@pytest.mark.usefixtures("create_user_and_login")
+def test_sign_up_view_get_method_authenticated_user(http_client):
+    """
+    GIVEN an authenticated user,
+    WHEN a GET request is made to the sign up view,
+    THEN the response status code is 302,
+    AND the response url is /user/account.
+    """
+
+    # Act
+    response = http_client.get(reverse("sign-up"))
+
+    # Assert
+    assert response.status_code == 302
+    assert response.url == reverse("account")
+
+
+def test_sign_up_view_get_method_success(http_client):
+    """
+    GIVEN an unauthenticated user,
+    WHEN a GET request is made to the sign up view,
+    THEN the response status code is 200,
+    AND the sign up template is rendered.
+    """
+
+    # Act
+    response = http_client.get(reverse("sign-up"))
+    rendered_templates = [template.name for template in response.templates]
+
+    # Assert
+    assert response.status_code == 200
+    assert "pages/authentication/sign-up.html" in rendered_templates
+
+
+def test_sign_up_view_post_method_invalid_data(http_client):
+    """
+    GIVEN a group of invalid values for the sign up process,
+    WHEN a POST request is made to the sign up view,
+    THEN the response contains the errors.
+    """
+
+    # Arrange
+    data = {
+        "first_name": "first_name_123",
+        "username": "",
+        "email": "not_an_email",
+        "password": "admin1234",
+    }
+
+    # Act
+    response = http_client.post(reverse("sign-up"), data)
+
+    # Assert
+    assert '<p class="field-error" id="first_name-error"' in response.content.decode()
+    assert '<p class="field-error" id="username-error"' in response.content.decode()
+    assert '<p class="field-error" id="email-error"' in response.content.decode()
+    assert '<p class="field-error" id="password-error"' in response.content.decode()
+
+
+@pytest.mark.django_db
+def test_sign_up_view_post_method_success(http_client):
+    """
+    GIVEN a group of valid values for the sign up process,
+    WHEN a POST request is made to the sign up view,
+    THEN the response url is /user/account.
+    """
+
+    # Arrange
+    data = {
+        "first_name": TEST_USER_DATA["first_name"],
+        "username": TEST_USER_DATA["username"],
+        "email": TEST_USER_DATA["email"],
+        "password": TEST_USER_DATA["password"],
+    }
+
+    # Act
+    response = http_client.post(reverse("sign-up"), data)
+
+    # Assert
+    assert response.url == reverse("account")
