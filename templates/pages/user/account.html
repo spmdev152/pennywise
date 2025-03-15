@@ -13,6 +13,7 @@
     {{ block.super }}
 
     <link rel="stylesheet" href="{% static 'css/pages/user/account.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/toast.css' %}">
 {% endblock css %}
 
 {% block content %}
@@ -23,7 +24,7 @@
 
         <form class="account-section__form"
               :hx-patch="'{% url 'account' %}?first_name=' + encodeURIComponent(firstName) + '&username=' + encodeURIComponent(username)"
-              hx-swap="multi:#first_name-error:outerHTML,#username-error:outerHTML"
+              hx-swap="multi:#first_name-error:outerHTML,#username-error:outerHTML,#toast:outerHTML"
               hx-indicator="#account-form-button"
               hx-disable-element="#account-form-button">
 
@@ -90,5 +91,7 @@
                 {% include "icons/loading.html" with width="16" height="16" style="display: none;" %}
             </button>
         </form>
+
+        <div id="toast"></div>
     </section>
 {% endblock content %}

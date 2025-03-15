@@ -51,7 +51,7 @@ class AccountView(View):
         -------
         HttpResponse
             A response with the form errors if any,
-            otherwise ...
+            otherwise a response with a success toast.
         """
 
         form_data = parse_query_string_from_body(request.body)
@@ -88,8 +88,15 @@ class AccountView(View):
                 {"origin": field},
             )
 
-        html_response = html_response.replace("\n", "")
-
         form.save()
+
+        toast_html = render_to_string(
+            "components/toast.html",
+            {"type": "success", "message": "User details updated successfully"},
+        )
+
+        html_response += toast_html
+
+        html_response = html_response.replace("\n", "")
 
         return HttpResponse(html_response)
