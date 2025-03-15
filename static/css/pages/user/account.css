@@ -1,0 +1,60 @@
+.account-section {
+  padding: var(--size-lg);
+}
+
+.account-section--title {
+  color: var(--color-fg);
+  font-size: var(--text-lg);
+  margin-bottom: var(--size-md);
+}
+
+.account-section__form {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-sm);
+  background-color: var(--color-layout-bg);
+  padding: var(--size-sm);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+.account-section__form--title {
+  color: var(--color-layout-fg);
+  font-size: var(--text-md);
+  margin-bottom: var(--size-sm);
+}
+
+.account-section__form__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-xs);
+}
+
+.account-section__form__field:last-of-type {
+  margin-bottom: var(--size-sm);
+}
+
+.account-section__form__field--label {
+  color: var(--color-layout-fg);
+  font-size: var(--text-sm);
+}
+
+.account-section__form__field--input {
+  background-color: var(--color-bg);
+  font-size: var(--text-sm);
+  padding: var(--size-xs);
+}
+
+.account-section__form__field--detail {
+  font-size: var(--text-xs);
+  text-decoration: underline;
+}
+
+.account-section__form--form-button {
+  width: 100%;
+  color: var(--color-primary-fg);
+  background-color: var(--color-primary-bg);
+  font-size: var(--text-base);
+}

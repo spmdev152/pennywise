@@ -11,10 +11,70 @@
 
 {% block css %}
     {{ block.super }}
+
+    <link rel="stylesheet" href="{% static 'css/pages/user/account.css' %}">
 {% endblock css %}
 
 {% block content %}
-    <section>
-        <p>Account</p>
+    <section class="account-section">
+        <h1 class="account-section--title">Account</h1>
+
+        <form class="account-section__form"
+              x-data="{ originalFirstName: '{{ user.first_name }}', originalUsername: '{{ user.username }}', firstName: '{{ user.first_name }}', username: '{{ user.username }}', get hasChanges() { return this.firstName !== this.originalFirstName || this.username !== this.originalUsername; } }">
+            <h2 class="account-section__form--title">User details</h2>
+
+            <div class="account-section__form__field">
+                <label class="account-section__form__field--label" for="first_name">First name</label>
+
+                <input class="account-section__form__field--input"
+                       name="first_name"
+                       placeholder="Pennywise"
+                       autocomplete="given-name"
+                       value="{{ user.first_name }}"
+                       x-model="firstName" />
+            </div>
+
+            <div class="account-section__form__field">
+                <label class="account-section__form__field--label" for="username">Username</label>
+
+                <input class="account-section__form__field--input"
+                       name="username"
+                       placeholder="pennywise152"
+                       autocomplete="username"
+                       value="{{ user.username }}"
+                       x-model="username" />
+            </div>
+
+            <div class="account-section__form__field">
+                <label class="account-section__form__field--label" for="email">Email</label>
+
+                <input class="account-section__form__field--input"
+                       name="email"
+                       placeholder="pennywise@gmail.com"
+                       autocomplete="email"
+                       value="{{ user.email }}"
+                       disabled />
+
+                <a class="account-section__form__field--detail">Change email</a>
+            </div>
+
+            <div class="account-section__form__field">
+                <label class="account-section__form__field--label" for="password">Password</label>
+
+                <input class="account-section__form__field--input"
+                       name="password"
+                       type="password"
+                       placeholder="*********"
+                       autocomplete="current-password"
+                       value="*********"
+                       disabled />
+
+                <a class="account-section__form__field--detail">Change password</a>
+            </div>
+
+            <button class="account-section__form--form-button"
+                    id="account-form-button"
+                    :disabled="!hasChanges">Save</button>
+        </form>
     </section>
 {% endblock content %}

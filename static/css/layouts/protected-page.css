@@ -79,7 +79,6 @@
 .protected-page-container__content__sections {
   height: calc(100vh - var(--height-header));
   background-color: var(--color-bg);
-  padding: var(--size-sm);
   overflow-y: auto;
 }
 

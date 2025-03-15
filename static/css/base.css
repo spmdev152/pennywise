@@ -96,6 +96,11 @@ button:hover {
   filter: brightness(0.95);
 }
 
+button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
 button.htmx-request {
   opacity: 70%;
   filter: none;
