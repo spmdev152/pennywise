@@ -16,11 +16,17 @@
 {% endblock css %}
 
 {% block content %}
-    <section class="account-section">
+    <section class="account-section"
+             hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
+             x-data="{ originalFirstName: '{{ user.first_name }}', originalUsername: '{{ user.username }}', firstName: '{{ user.first_name }}', username: '{{ user.username }}', get hasChanges() { return this.firstName !== this.originalFirstName || this.username !== this.originalUsername; } }">
         <h1 class="account-section--title">Account</h1>
 
         <form class="account-section__form"
-              x-data="{ originalFirstName: '{{ user.first_name }}', originalUsername: '{{ user.username }}', firstName: '{{ user.first_name }}', username: '{{ user.username }}', get hasChanges() { return this.firstName !== this.originalFirstName || this.username !== this.originalUsername; } }">
+              :hx-patch="'{% url 'account' %}?first_name=' + encodeURIComponent(firstName) + '&username=' + encodeURIComponent(username)"
+              hx-swap="multi:#first_name-error:outerHTML,#username-error:outerHTML"
+              hx-indicator="#account-form-button"
+              hx-disable-element="#account-form-button">
+
             <h2 class="account-section__form--title">User details</h2>
 
             <div class="account-section__form__field">
@@ -32,6 +38,8 @@
                        autocomplete="given-name"
                        value="{{ user.first_name }}"
                        x-model="firstName" />
+
+                {% include "components/error/error-recipient.html" with origin="first_name" %}
             </div>
 
             <div class="account-section__form__field">
@@ -43,6 +51,8 @@
                        autocomplete="username"
                        value="{{ user.username }}"
                        x-model="username" />
+
+                {% include "components/error/error-recipient.html" with origin="username" %}
             </div>
 
             <div class="account-section__form__field">
@@ -74,7 +84,11 @@
 
             <button class="account-section__form--form-button"
                     id="account-form-button"
-                    :disabled="!hasChanges">Save</button>
+                    :disabled="!hasChanges">
+                Save
+
+                {% include "icons/loading.html" with width="16" height="16" style="display: none;" %}
+            </button>
         </form>
     </section>
 {% endblock content %}
