@@ -45,7 +45,12 @@ class SignInView(View):
         if request.user.is_authenticated:
             return redirect(reverse("account"))
 
-        redirection_message = REDIRECTION_MESSAGES.get(request.GET.get("next"))
+        redirection_url = request.GET.get("next")
+
+        if redirection_url and "?" in redirection_url:
+            redirection_url = redirection_url.split("?")[0]
+
+        redirection_message = REDIRECTION_MESSAGES.get(redirection_url)
 
         if redirection_message:
             return render(

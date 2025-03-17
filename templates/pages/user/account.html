@@ -16,17 +16,25 @@
     <link rel="stylesheet" href="{% static 'css/components/toast.css' %}">
 {% endblock css %}
 
+{% block js %}
+    {{ block.super }}
+
+    <script src="{% static 'js/pages/user/account.js' %}" defer></script>
+{% endblock js %}
+
 {% block content %}
     <section class="account-section"
+             id="account-section"
              hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
              x-data="{ originalFirstName: '{{ user.first_name }}', originalUsername: '{{ user.username }}', firstName: '{{ user.first_name }}', username: '{{ user.username }}', get hasChanges() { return this.firstName !== this.originalFirstName || this.username !== this.originalUsername; } }">
         <h1 class="account-section--title">Account</h1>
 
         <form class="account-section__form"
               :hx-patch="'{% url 'account' %}?first_name=' + encodeURIComponent(firstName) + '&username=' + encodeURIComponent(username)"
-              hx-swap="multi:#first_name-error:outerHTML,#username-error:outerHTML,#toast:outerHTML"
+              hx-swap="multi:#first_name-error:outerHTML,#username-error:outerHTML,#user-details-toast:outerHTML"
               hx-indicator="#account-form-button"
-              hx-disable-element="#account-form-button">
+              hx-disable-element="#account-form-button"
+              hx-on::after-request="resetUserStateAfterUpdate(event)">
 
             <h2 class="account-section__form--title">User details</h2>
 
@@ -92,6 +100,6 @@
             </button>
         </form>
 
-        <div id="toast"></div>
+        <div id="user-details-toast"></div>
     </section>
 {% endblock content %}

@@ -20,7 +20,7 @@
 {% block body %}
     <main>
         {% if redirection_message %}
-            {% include "components/toast.html" with type="error" message=redirection_message %}
+            {% include "components/toast.html" with id="sign-in-toast" type="error" message=redirection_message %}
         {% endif %}
 
         <section class="sign-in-form">

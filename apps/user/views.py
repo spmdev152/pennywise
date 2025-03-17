@@ -92,7 +92,11 @@ class AccountView(View):
 
         toast_html = render_to_string(
             "components/toast.html",
-            {"type": "success", "message": "User details updated successfully"},
+            {
+                "id": "user-details-toast",
+                "type": "success",
+                "message": "User details updated successfully",
+            },
         )
 
         html_response += toast_html
