@@ -61,7 +61,6 @@ class AccountView(View):
         html_response = ""
 
         if not form.is_valid():
-
             for field in form.fields.keys():
                 field_errors = form.errors.get(field)
 
