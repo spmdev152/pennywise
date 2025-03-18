@@ -13,3 +13,8 @@
   color: var(--color-error-fg);
   background-color: var(--color-error-bg);
 }
+
+.toast[data-type="success"] {
+  color: var(--color-success-fg);
+  background-color: var(--color-success-bg);
+}

@@ -1,6 +1,7 @@
 {# Toast component #}
 
 <div class="toast"
+     id="{{ id|default:'toast' }}"
      data-type="{{ type }}"
      x-data="{ visible: false }"
      x-init="$nextTick(() => { visible = true; setTimeout(() => visible = false, 3000) })"
